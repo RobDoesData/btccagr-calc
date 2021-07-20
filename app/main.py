@@ -10,6 +10,11 @@ import os
 import io
 import base64
 import matplotlib
+from datetime import date, timedelta
+import json 
+
+from cagr.calc import cagr_calc
+
 
 
 matplotlib.use('Agg')
@@ -20,73 +25,57 @@ app = Flask(__name__)
 
 @app.route("/")
 def homepage():
-    df = pd.read_csv('btcprice.csv')
-    df['Time'] = pd.to_datetime(df['Time'],format='%m/%d/%y')
-    df.columns = ['Time','Price']
+    today = date.today()
+    yesterday = today - timedelta(days = 1)
+    yesterday =  yesterday.strftime("%Y-%m-%d")
     
-    l = pd.to_datetime("2010-07-15", format='%Y-%m-%d')
-    f = pd.to_datetime("2021-07-18", format='%Y-%m-%d')
-    
-    startdate = f"Starting date {l}".replace("00:00:00","")
-    enddate = f"End date {f}".replace("00:00:00","")
-    N = ((f - l).days/365)
-    timegap = f"Years between start and end {round(N,2)}"
-    L = float(df.loc[df['Time'] == l]['Price'].values[0])
-    F = float(df.loc[df['Time'] == f]['Price'].values[0])
-    CAGR = "{:.0%}".format(((F/L)**(1/N)))
-    
-    plt.plot(df.Time,df.Price)
-    plt.title('Bitcoin Historic Price')
-    plt.axvspan(l, f, alpha=0.5, color='red')
-    plt.xlabel('BTC/USD Price')
-    plt.ylabel('Price (USD)')
-    #plt.yscale("log")
-    # plt.show()
-    my_path = os.path.dirname(os.path.realpath(__file__))
-    plt.savefig(f"{my_path}/static/images/default.png")
-    plt.cla() 
-    
-    path = f'static/images/default.png'
-    finalprice = f"Final Price is: {'${:,.2f}'.format(F)}"
-    startingprice = f"Starting Price is: {'${:,.2f}'.format(L)}"
-    readout = f"The CAGR between {f.date()} and {l.date()} is {CAGR}"
+    #startdate, enddate,timegap,finalprice,startingprice,readout,path = cagr_calc('2010-07-18',end=yesterday,ticker='BTC')
 
-    return render_template('cagr.html',startdate=startdate, enddate=enddate, timegap=timegap, finalprice=finalprice, startingprice=startingprice, readout=readout, chart=path)
+    payload, chartpath = cagr_calc('2010-07-18',yesterday,'BTC')
+    
+    payload = json.dumps(payload)
+    payload = json.loads(payload)
+    payload = json.loads(payload)
+    
+    charts = []
+    charts.append(chartpath) 
+    return render_template('cagr.html',x=payload,charts=charts)
+
+    #return render_template('cagr.html',startdate=startdate, enddate=enddate, timegap=timegap, finalprice=finalprice, startingprice=startingprice, readout=readout, path=path)
 
 
 @app.route("/demo", methods = ['GET', 'POST'])
 def demo_homepage():
-    df = pd.read_csv('btcprice.csv')
-    df['Time'] = pd.to_datetime(df['Time'],format='%m/%d/%y')
-    df.columns = ['Time','Price']
     start = request.form['start']
     end = request.form['end']
 
-    l = pd.to_datetime(start, format='%Y-%m-%d')
-    f = pd.to_datetime(end, format='%Y-%m-%d')
-    
-    startdate = f"Starting date {l}".replace("00:00:00","")
-    enddate = f"End date {f}".replace("00:00:00","")
-    N = ((f - l).days/365)
-    timegap = f"Years between start and end {round(N,2)}"
-    L = float(df.loc[df['Time'] == l]['Price'].values[0])
-    F = float(df.loc[df['Time'] == f]['Price'].values[0])
-    CAGR = "{:.0%}".format(((F/L)**(1/N)))
-    
-    plt.plot(df.Time,df.Price)
-    plt.title('Bitcoin Historic Price')
-    plt.axvspan(l, f, alpha=0.5, color='red')
-    plt.xlabel('BTC/USD Price')
-    plt.ylabel('Price (USD)')
-    img_uuid = uuid.uuid4()
-    my_path = os.path.dirname(os.path.realpath(__file__))
-    
-    plt.savefig(f"{my_path}/static/images/{img_uuid}.png")
-    plt.cla() 
+    if request.form['ticker']  == "BTC":
+        payload, chartpath = cagr_calc(start,end,'BTC')
+        payload = json.dumps(payload)
+        payload = json.loads(payload)
+        payload = json.loads(payload)
+        charts = []
+        charts.append(chartpath) 
+        #startdate, enddate,timegap,finalprice,startingprice,readout,path = cagr_calc(start,end,ticker)
+        #return render_template('cagr.html',startdate=startdate, enddate=enddate, timegap=timegap, finalprice=finalprice, startingprice=startingprice, readout=readout, path=path)
+        return render_template('cagr.html',x=payload,charts=charts)
+    else:
+        group_chart = []
+        group_payload = {}
+        for i in ['BTC','GLD','SPY']:
+            payload, chartpath = cagr_calc(start,end,i)
+            payload = json.dumps(payload)
+            payload = json.loads(payload)
+            payload = json.loads(payload)
+            group_chart.append(chartpath)
+            group_payload.update(payload)
+        
+        return render_template('cagr.html',x=group_payload,charts=group_chart)
+            
 
-    path = f"static/images/{img_uuid}.png"
-    finalprice = f"Final Price is: {'${:,.2f}'.format(F)}"
-    startingprice = f"Starting Price is: {'${:,.2f}'.format(L)}"
-    readout = f"The CAGR between {l.date()} and {f.date()} is {CAGR}"
+    #     btc_startdate, btc_enddate,btc_timegap,btc_finalprice,btc_startingprice,btc_readout,btc_path = cagr_calc(start,end,'BTC')
+    #     gld_startdate, gld_enddate,gld_timegap,gld_finalprice,gld_startingprice,gld_readout,gld_path = cagr_calc(start,end,'GLD')
+    #     spy_startdate, spy_enddate,spy_timegap,spy_finalprice,spy_startingprice,spy_readout,spy_path = cagr_calc(start,end,'SPY')
 
-    return render_template('cagr.html',startdate=startdate, enddate=enddate, timegap=timegap, finalprice=finalprice, startingprice=startingprice, readout=readout, chart=path)
+
+    #     return render_template('multi_cagr.html',startdate=startdate, enddate=enddate, timegap=timegap, finalprice=finalprice, startingprice=startingprice, readout=readout, path=path)
