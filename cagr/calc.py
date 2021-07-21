@@ -9,18 +9,9 @@ def cagr_calc(start,end,ticker):
     df = pd.read_csv(f'price/{ticker}_historic.csv')
     df['Date'] = pd.to_datetime(df['Date'],format='%Y-%m-%d')
     
-    if ticker=='BTC':
-        l = pd.to_datetime(start, format='%Y-%m-%d')
-        f = pd.to_datetime(end, format='%Y-%m-%d')
-    else:
-        
-        l = pd.to_datetime(start, format='%Y-%m-%d')
-        while not bool(len(pd.bdate_range(l, l))):
-            l = l + timedelta(days = 1)
-        
-        f = pd.to_datetime(end, format='%Y-%m-%d')
-        while not bool(len(pd.bdate_range(f, f))):
-            f = f - timedelta(days = 1)
+
+    l = pd.to_datetime(start, format='%Y-%m-%d')
+    f = pd.to_datetime(end, format='%Y-%m-%d')
 
     
     startdate = f"{l}".replace("00:00:00","").replace(" ","")
@@ -29,7 +20,7 @@ def cagr_calc(start,end,ticker):
     timegap = f"{round(N,2)}"
     L = float(df.loc[df['Date'] == l]['Price'].values[0])
     F = float(df.loc[df['Date'] == f]['Price'].values[0])
-    CAGR = "{:.0%}".format(((F/L)**(1/N)))
+    CAGR = "{:.0%}".format(((F/L)**(1/N))-1)
     
     plt.plot(df.Date,df.Price)
     plt.title(f'{ticker} Historic Price')
