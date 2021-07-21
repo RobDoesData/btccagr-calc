@@ -1,66 +1,51 @@
 <!doctype html>
 <html>
-<header>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href = "cagr.css">
+    <title> BTC CAGR Tool</title>
+</head>
+<body>
+  <header>
+    <div class = "h1Container">
+      <h1>BTC CAGR TOOL</h1>
+      <p> CAGR: Compound Annual Growth Rate.</p>
+    </div>
+  </header>
 
-<title> BTC CAGR Tool</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<style>
-    table {
-      font-family: arial, sans-serif;
-    }
-    
-    td, th {
-      border: 1px solid #dddddd;
-    }
-    
-    tr:nth-child(even) {
-      background-color: #dddddd;
-    }
-    div{
-      padding: 1rem;
-    }
-    </style>
+<section class = "tableAndChart">
+  <table>
+      <tr>
+      <th class = "cells">Asset</th>
+      <th class = "cells">Start</th>
+      <th class = "cells">End</th>
+      <th class = "cells">Starting Price</th>
+      <th class = "cells">Ending Price</th>
+      <th class = "cells">Time Passed (Years)</th>
+      <th class = "cells">CAGR</th>
+  </tr>
+  {% for key, value in x.items() %}
+  <tr>
+  {%for k, v in value.items()%}
+  <td>{{v}}</td>
+  {% endfor %}    
+  {% endfor %}
+  </tr>
+  </table>
 
-</header>
+  <div class = "chartContainer">
+      {% for chart in charts%}
+  <img src="{{chart}}",  width="400" height="400">
+  {% endfor %}
+  </div>
+</section>
 
-<h1>BTC CAGR TOOL</h1>
-<p> CAGR: Compound Annual Growth Rate.</p>
-
-
-
-<table>
-    <tr>
-    <th>Asset</th>
-    <th>Start</th>
-    <th>End</th>
-    <th>Starting Price</th>
-    <th>Ending Price</th>
-    <th>Time Passed (Years)</th>
-    <th>CAGR</th>
-</tr>
-{% for key, value in x.items() %}
-<tr>
-{%for k, v in value.items()%}
-<td>{{v}}</td>
-{% endfor %}    
-{% endfor %}
-</tr>
-
-</table>
-
-
-<div>
-    {% for chart in charts%}
-<img src="{{chart}}",  width="400" height="400">
-{% endfor %}
-</div>
-
-
-
-<p> Want to pick your own dates?</p>
-
-<div>
+<div class ="DateRange">
 <form action = "/demo" method = "POST" enctype = "multipart/form-data">
+    <p> Want to pick your own dates?</p>
     <p>Select CAGR Calculation</p>
 
       <input type="radio" id="ticker" name="ticker" value="BTC"
@@ -82,9 +67,16 @@ Ending Date<input type="date" id="end" name="end"
     min="2010-07-15" max="2021-07-18">
 </le>
 </ol>
-       <input style="align-content: center; margin: 5px; padding: auto;" class="button-primary" type="submit" value="Submit">
+       <input class="button-primary" type="submit" value="Submit">
    </form>
-  </div>
+</div>
+
+
+<footer>
    By: <a href="https://twitter.com/rob1ham">Rob Hamilton</a> <br>
    QA: <a href="https://twitter.com/THEAMERICANHODL">American Hodl</a> &  <a href="https://twitter.com/jaygould">Jay Gould</a> 
+</footer>
+
+
+</body>
 </html>
