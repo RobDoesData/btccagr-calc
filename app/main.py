@@ -26,10 +26,9 @@ app = Flask(__name__)
 @app.route("/")
 def homepage():
     today = date.today()
-    yesterday = today - timedelta(days = 1)
+    yesterday = today - timedelta(days = 2)
     yesterday =  yesterday.strftime("%Y-%m-%d")
     
-    #startdate, enddate,timegap,finalprice,startingprice,readout,path = cagr_calc('2010-07-18',end=yesterday,ticker='BTC')
 
     payload, chartpath = cagr_calc('2010-07-18',yesterday,'BTC')
     
@@ -40,8 +39,6 @@ def homepage():
     charts = []
     charts.append(chartpath) 
     return render_template('cagr.html',x=payload,charts=charts)
-
-    #return render_template('cagr.html',startdate=startdate, enddate=enddate, timegap=timegap, finalprice=finalprice, startingprice=startingprice, readout=readout, path=path)
 
 
 @app.route("/demo", methods = ['GET', 'POST'])
