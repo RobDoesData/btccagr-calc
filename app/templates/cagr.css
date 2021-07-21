@@ -11,3 +11,20 @@ body {
     max-width: 100%;
     box-sizing: border-box;
 }
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+header h1{
+    font-size: 3.5rem;
+    color: #f2a900;
+    text-shadow: 2px 1px black;
+    margin-bottom: -10px;
+}
+
+header p{
+    font-size: 1.2rem;
+}
