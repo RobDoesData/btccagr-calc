@@ -16,6 +16,9 @@
     tr:nth-child(even) {
       background-color: #dddddd;
     }
+    div{
+      padding: 1rem;
+    }
     </style>
 
 </header>
@@ -55,22 +58,16 @@
 
 <p> Want to pick your own dates?</p>
 
-
+<div>
 <form action = "/demo" method = "POST" enctype = "multipart/form-data">
     <p>Select CAGR Calculation</p>
 
-    <div>
       <input type="radio" id="ticker" name="ticker" value="BTC"
              checked>
       <label for="BTC">BTC</label>
-    </div>
     
-    <div>
       <input type="radio" id="ticker" name="ticker" value="ALL">
       <label for="ALL">BTC, GLD, SPY</label>
-    </div>
-    
-    <div>
     
     <ol><le><br>
     Starting Date <input type="date" id="start" name="start"
@@ -86,6 +83,7 @@ Ending Date<input type="date" id="end" name="end"
 </ol>
        <input style="align-content: center; margin: 5px; padding: auto;" class="button-primary" type="submit" value="Submit">
    </form>
+  </div>
 <br>
 <br>
    By: <a href="https://twitter.com/rob1ham">Rob Hamilton</a> <br>
