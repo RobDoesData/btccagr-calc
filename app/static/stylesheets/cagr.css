@@ -10,15 +10,11 @@ body {
 * {
     max-width: 100%;
     box-sizing: border-box;
+    border: 1px solid black;
 }
 
+/* Top of the page Start */
 header {
-    text-align: center;
-    margin-bottom: 40px;
-    width: 100%;
-}
-
-title {
     text-align: center;
     margin-bottom: 40px;
     width: 100%;
@@ -26,11 +22,47 @@ title {
 
 header h1{
     font-size: 3.5rem;
-    color: #f2a900;
-    text-shadow: 2px 1px black;
+    /* maybe its too tacky, I can just change it back to solid */
+    color: black;
+    /* text-shadow: 2px 1px black; */
     margin-bottom: -10px;
 }
 
 header p{
-    fx ont-size: 1.2rem;
+    font-size: 1.2rem;
+}
+/* Top of the page end */
+
+/* here is the table, chart, and calendar */
+.tableChartButton {
+    display: flex;
+    flex-flow: row-reverse wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    /* width: 50%; */
+}
+
+.dateRange {
+    width: 400px;
+}
+
+.btcChart {
+ width: 400px;
+ height: 400px;
+}
+
+form{
+    align-items: center;
+    /* display: flex; */
+    
+}
+
+form ol{
+    padding-left: -40px;
+    
+}
+
+form h2{
+    font-size: 1.2rem;
+    text-align: center;
 }

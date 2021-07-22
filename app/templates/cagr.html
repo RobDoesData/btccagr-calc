@@ -5,14 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
-
     <link rel="stylesheet" href = "{{ url_for('static', filename='stylesheets/cagr.css') }}">
     <title> BTC CAGR Tool</title>
 </head>
 <body>
   <header>
     <div class = "h1Container">
-      <h1>BTC CAGR TOOL</h1>
+      <h1>₿TC CAGR TOOL</h1>
       <p> CAGR: Compound Annual Growth Rate.</p>
     </div>
   </header>
@@ -40,29 +39,29 @@
 
   <div class = "chartContainer">
       {% for chart in charts%}
-  <img src="{{chart}}",  width="400" height="400">
+  <img class="btcChart" src="{{chart}}">
   {% endfor %}
   </div>
   </div>
 
-<div class ="DateRange">
+<div class ="dateRange">
 <form action = "/demo" method = "POST" enctype = "multipart/form-data">
-    <p> Want to pick your own dates?</p>
-    <p>Select CAGR Calculation</p>
+    <h2> Want to pick your own dates?</h2>
+    <h2>Select CAGR Calculation</h2>
 
       <input type="radio" id="ticker" name="ticker" value="BTC"
              checked>
-      <label for="BTC">BTC</label>
+      <label for="BTC">BTC</label><br>
     
       <input type="radio" id="ticker" name="ticker" value="ALL">
       <label for="ALL">BTC + GLD + SPY</label>
     
-    <ol><le><br>
+    <ol><le>
     Starting Date <input type="date" id="start" name="start"
     value="2010-07-18"
     min="2010-07-18" max="2021-07-18">
 </le>
-<br>
+
 <le>
 Ending Date<input type="date" id="end" name="end"
     value="2021-07-20"
