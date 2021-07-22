@@ -33,6 +33,23 @@ header p{
 }
 /* Top of the page end */
 
+.cellStats{
+    text-align: center;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    font-size: 1.4rem;  
+}
+
+th{
+    border: 1px solid black;
+    margin-bottom: -1px;
+}
+td{
+    padding: 0px 10px 0px 10px;
+    border: 1px solid black;
+}
+
 /* here is the table, chart, and calendar */
 .tableChartButton {
     display: flex;
@@ -42,9 +59,6 @@ header p{
     /* width: 50%; */
 }
 
-.dateRange {
-
-}
 
 .btcChart {
  width: 400px;
@@ -60,11 +74,33 @@ ol{
     padding-bottom: 30px;
 }
 
+form {
+    width: 100%;
+}
+
 form h2{
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     text-align: center;
+    margin-bottom: 3px;
+}
+
+form p{
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 3px;
 }
 
 #start {
     margin-bottom: 5px;
+}
+
+
+footer {
+    font-size: 1.5rem;
+    /* border: 1px solid black; */
+}
+
+footer a{
+    text-decoration: none;
+    color: black;
 }

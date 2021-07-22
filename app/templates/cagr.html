@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
     <link rel="stylesheet" href = "{{ url_for('static', filename='stylesheets/cagr.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title> BTC CAGR Tool</title>
 </head>
 <body>
@@ -15,27 +16,30 @@
       <p> CAGR: Compound Annual Growth Rate.</p>
     </div>
   </header>
+<div class = "cellStats">
+  <table>
+    <tr>
+    <th class = "cells">Asset</th>
+    <th class = "cells">Start</th>
+    <th class = "cells">End</th>
+    <th class = "cells">Starting Price</th>
+    <th class = "cells">Ending Price</th>
+    <th class = "cells">Time Passed (Years)</th>
+    <th class = "cells">CAGR</th>
+</tr>
+{% for key, value in x.items() %}
+<tr>
+{%for k, v in value.items()%}
+<td>{{v}}</td>
+{% endfor %}    
+{% endfor %}
+</tr>
+</table>
+</div>
 
 <section class = "tableChartButton">
   <div class = tableAndChart>
-  <table>
-      <tr>
-      <th class = "cells">Asset</th>
-      <th class = "cells">Start</th>
-      <th class = "cells">End</th>
-      <th class = "cells">Starting Price</th>
-      <th class = "cells">Ending Price</th>
-      <th class = "cells">Time Passed (Years)</th>
-      <th class = "cells">CAGR</th>
-  </tr>
-  {% for key, value in x.items() %}
-  <tr>
-  {%for k, v in value.items()%}
-  <td>{{v}}</td>
-  {% endfor %}    
-  {% endfor %}
-  </tr>
-  </table>
+
 
   <div class = "chartContainer">
       {% for chart in charts%}
@@ -47,7 +51,7 @@
 <div class ="dateRange">
 <form action = "/demo" method = "POST" enctype = "multipart/form-data">
     <h2> Want to pick your own dates?</h2>
-    <h2>Select CAGR Calculation</h2>
+    <p>Select CAGR Calculation</p>
 
       <input type="radio" id="ticker" name="ticker" value="BTC"
              checked>
@@ -74,8 +78,8 @@ Ending Date<input type="date" id="end" name="end"
 </section>
 
 <footer>
-   By: <a href="https://twitter.com/rob1ham">Rob Hamilton</a> <br>
-   QA: <a href="https://twitter.com/THEAMERICANHODL">American Hodl</a> &  <a href="https://twitter.com/jaygould">Jay Gould</a> 
+   By: <a class="fa fa-twitter" href="https://twitter.com/rob1ham" target="_blank" >Rob Hamilton</a> <br>
+   QA: <a class="fa fa-twitter" href="https://twitter.com/THEAMERICANHODL" target="_blank" >American Hodl</a> &  <a class="fa fa-twitter" href="https://twitter.com/jaygould" target="_blank" >Jay Gould</a> 
 </footer>
 
 
