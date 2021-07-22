@@ -38,25 +38,26 @@ header p{
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    font-size: 1.4rem;  
+    font-size: 1.5rem;  
+    
 }
 
 th{
     border: 1px solid black;
-    margin-bottom: -1px;
 }
 td{
     padding: 0px 10px 0px 10px;
     border: 1px solid black;
+
 }
 
 /* here is the table, chart, and calendar */
 .tableChartButton {
     display: flex;
     flex-flow: row-reverse wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    /* width: 50%; */
+    width: 100%;
 }
 
 
