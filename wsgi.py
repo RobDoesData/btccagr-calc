@@ -5,4 +5,4 @@ if __name__ == "__main__":
         app.jinja_env.auto_reload = True
         app.static_folder = 'static'
         app.config['TEMPLATES_AUTO_RELOAD'] = True
-        app.run()
+        app.run(app.run(debug=True))
