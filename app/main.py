@@ -70,23 +70,17 @@ def demo_homepage():
 @app.route("/future", methods = ['GET', 'POST'])
 def future_cagr():
     df = pd.read_csv(f'price/BTC_historic.csv')
-    last_close = df['Price'].iloc[-1]
-    last_close = int(float(last_close))
+    last_close = int(df['Price'].iloc[-1])
     try:
-        request.form['price']
+        int(request.form['price'])
     except:
         price= int(last_close)
         time = 10
         cagr = 100
     else:
-        price = request.form['price']
+        price = int(request.form['price'])
         time = float(request.form['time'])
         cagr = float(request.form['cagr'])
-
-        price = int(float(price))
     fv = price * ((cagr / 100 + 1)** time)
-
-    if price!=last_close:
-        price = last_close
 
     return render_template('future.html',last_close=last_close,fv=fv,price=price,time=time,cagr=cagr)
