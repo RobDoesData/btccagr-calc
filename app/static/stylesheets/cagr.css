@@ -99,6 +99,7 @@ form p{
 footer {
     font-size: 1.5rem;
     /* border: 1px solid black; */
+    text-align: center;
 }
 
 footer a{
