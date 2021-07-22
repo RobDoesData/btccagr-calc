@@ -10,7 +10,7 @@ body {
 * {
     max-width: 100%;
     box-sizing: border-box;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 /* Top of the page Start */
@@ -43,7 +43,7 @@ header p{
 }
 
 .dateRange {
-    width: 400px;
+
 }
 
 .btcChart {
@@ -51,18 +51,20 @@ header p{
  height: 400px;
 }
 
-form{
-    align-items: center;
-    /* display: flex; */
-    
+ol{
+    padding-left: 0px;
+    width: 40%;
 }
 
-form ol{
-    padding-left: -40px;
-    
+.startDate {
+    padding-bottom: 30px;
 }
 
 form h2{
     font-size: 1.2rem;
     text-align: center;
+}
+
+#start {
+    margin-bottom: 5px;
 }
