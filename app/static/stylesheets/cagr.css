@@ -105,4 +105,5 @@ footer {
 footer a{
     text-decoration: none;
     color: black;
+    padding: 3px;
 }
