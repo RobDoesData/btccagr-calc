@@ -1,0 +1,38 @@
+html {
+    font-family: 'Lato', sans-serif;
+    font-size: 62.5%;
+}
+
+body {
+    margin: 0 auto;
+}
+
+* {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+header h1{
+    font-size: 3.5rem;
+    /* maybe its too tacky, I can just change it back to solid */
+    color: black;
+    /* text-shadow: 2px 1px black; */
+    margin-bottom: -10px;
+}
+
+header p{
+    font-size: 1.2rem;
+}
+
+.tableChartButton {
+    display: flex;
+    flex-flow: row-reverse wrap;
+    justify-content: space-around;
+    align-items: center;
+}
