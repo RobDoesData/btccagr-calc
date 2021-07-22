@@ -18,6 +18,12 @@ header {
     width: 100%;
 }
 
+title {
+    text-align: center;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
 header h1{
     font-size: 3.5rem;
     color: #f2a900;
@@ -26,5 +32,5 @@ header h1{
 }
 
 header p{
-    font-size: 1.2rem;
+    fx ont-size: 1.2rem;
 }

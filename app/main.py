@@ -20,7 +20,7 @@ from cagr.calc import cagr_calc
 matplotlib.use('Agg')
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates")
 
 
 @app.route("/")
