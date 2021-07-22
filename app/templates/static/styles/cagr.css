@@ -20,11 +20,19 @@ header {
 
 header h1{
     font-size: 3.5rem;
-    color: #f2a900;
-    text-shadow: 2px 1px black;
+    /* maybe its too tacky, I can just change it back to solid */
+    color: black;
+    /* text-shadow: 2px 1px black; */
     margin-bottom: -10px;
 }
 
 header p{
     font-size: 1.2rem;
+}
+
+.tableChartButton {
+    display: flex;
+    flex-flow: row-reverse wrap;
+    justify-content: space-around;
+    align-items: center;
 }
