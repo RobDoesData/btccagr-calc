@@ -53,8 +53,6 @@ def demo_homepage():
         payload = json.loads(payload)
         charts = []
         charts.append(chartpath) 
-        #startdate, enddate,timegap,finalprice,startingprice,readout,path = cagr_calc(start,end,ticker)
-        #return render_template('cagr.html',startdate=startdate, enddate=enddate, timegap=timegap, finalprice=finalprice, startingprice=startingprice, readout=readout, path=path)
         return render_template('cagr.html',x=payload,charts=charts)
     else:
         group_chart = []
@@ -69,10 +67,26 @@ def demo_homepage():
         
         return render_template('cagr.html',x=group_payload,charts=group_chart)
             
+@app.route("/future", methods = ['GET', 'POST'])
+def future_cagr():
+    df = pd.read_csv(f'price/BTC_historic.csv')
+    last_close = df['Price'].iloc[-1]
+    last_close = int(float(last_close))
+    try:
+        request.form['price']
+    except:
+        price= int(last_close)
+        time = 10
+        cagr = 100
+    else:
+        price = request.form['price']
+        time = float(request.form['time'])
+        cagr = float(request.form['cagr'])
 
-    #     btc_startdate, btc_enddate,btc_timegap,btc_finalprice,btc_startingprice,btc_readout,btc_path = cagr_calc(start,end,'BTC')
-    #     gld_startdate, gld_enddate,gld_timegap,gld_finalprice,gld_startingprice,gld_readout,gld_path = cagr_calc(start,end,'GLD')
-    #     spy_startdate, spy_enddate,spy_timegap,spy_finalprice,spy_startingprice,spy_readout,spy_path = cagr_calc(start,end,'SPY')
+        price = int(float(price))
+    fv = price * ((cagr / 100 + 1)** time)
 
+    if price!=last_close:
+        price = last_close
 
-    #     return render_template('multi_cagr.html',startdate=startdate, enddate=enddate, timegap=timegap, finalprice=finalprice, startingprice=startingprice, readout=readout, path=path)
+    return render_template('future.html',last_close=last_close,fv=fv,price=price,time=time,cagr=cagr)

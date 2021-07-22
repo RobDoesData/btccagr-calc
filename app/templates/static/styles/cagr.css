@@ -21,7 +21,7 @@ header {
 header h1{
     font-size: 3.5rem;
     /* maybe its too tacky, I can just change it back to solid */
-    color: blue;
+    color: black;
     /* text-shadow: 2px 1px black; */
     margin-bottom: -10px;
 }

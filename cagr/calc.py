@@ -17,10 +17,10 @@ def cagr_calc(start,end,ticker):
     startdate = f"{l}".replace("00:00:00","").replace(" ","")
     enddate = f"{f}".replace("00:00:00","").replace(" ","")
     N = ((f - l).days/365)
-    timegap = f"{round(N,2)}"
+    timegap = f"{round(N,4)}"
     L = float(df.loc[df['Date'] == l]['Price'].values[0])
     F = float(df.loc[df['Date'] == f]['Price'].values[0])
-    CAGR = "{:.0%}".format(((F/L)**(1/N))-1)
+    CAGR = "{:.2%}".format(((F/L)**(1/N))-1)
     
     plt.plot(df.Date,df.Price)
     plt.title(f'{ticker} Historic Price')

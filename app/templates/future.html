@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href = "{{ url_for('static', filename='stylesheets/cagr.css') }}">
+    <title> BTC CAGR Tool</title>
+</head>
+<body>
+  <header>
+    <div class = "h1Container">
+      <h1>BTC CAGR TOOL</h1>
+      <p> CAGR: Compound Annual Growth Rate.</p>
+    </div>
+  </header>
+
+<div class ="DateRange">
+<form action = "/future" method = "POST" enctype = "multipart/form-data">
+    <p> Future Value CAGR Calculation</p>
+
+    
+    <ol>
+        <le>
+            <br>
+    Last Closing Price of BTC: {{last_close}}
+    <input type="number" step="0.01" id="price" name="price" value="{{price}}">
+    <br>
+    </le>
+    Number of Years: <input type="number" step="0.01" id="time" name="time" value=10>
+    <br>
+    <le>
+    CAGR (%):
+    <input type="number" step=".01" id="cagr" name="cagr"
+    value="50">
+</le>
+<br>
+</ol>
+       <input class="button-primary" type="submit" value="Submit">
+   </form>
+</div>
+</section>
+<br>
+
+With a starting value of {{"${:,.0f}".format(price)}} over {{time}} years and a {{cagr}}% CAGR, the future value would be {{"${:,.0f}".format(fv)}}.
+<br>
+<br>
+
+
+<footer>
+   By: <a href="https://twitter.com/rob1ham">Rob Hamilton</a> <br>
+   QA: <a href="https://twitter.com/THEAMERICANHODL">American Hodl</a> &  <a href="https://twitter.com/jaygould">Jay Gould</a> 
+</footer>
+
+
+</body>
+</html>
