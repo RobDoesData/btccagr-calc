@@ -10,15 +10,11 @@ body {
 * {
     max-width: 100%;
     box-sizing: border-box;
+    /* border: 1px solid black; */
 }
 
+/* Top of the page Start */
 header {
-    text-align: center;
-    margin-bottom: 40px;
-    width: 100%;
-}
-
-title {
     text-align: center;
     margin-bottom: 40px;
     width: 100%;
@@ -26,11 +22,102 @@ title {
 
 header h1{
     font-size: 3.5rem;
-    color: #f2a900;
-    text-shadow: 2px 1px black;
+    /* maybe its too tacky, I can just change it back to solid */
+    color: black;
+    /* text-shadow: 2px 1px black; */
     margin-bottom: -10px;
 }
 
 header p{
-    fx ont-size: 1.2rem;
+    font-size: 1.2rem;
 }
+/* Top of the page end */
+
+/* table stats start */
+.cellStats{
+    text-align: center;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    font-size: 1.5rem;  
+}
+
+th{
+    border: 1px solid black;
+}
+td{
+    padding: 0px 10px 0px 10px;
+    border: 1px solid black;
+}
+/* table stats end */
+
+/* here is the chart, and calendar */
+.tableChartButton {
+    display: flex;
+    flex-flow: row-reverse wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+
+.btcChart {
+ width: 400px;
+ height: 400px;
+}
+
+ol{
+    padding-left: 0px;
+    width: 40%;
+}
+
+.startDate {
+    padding-bottom: 30px;
+}
+
+form {
+    width: 100%;
+}
+
+form h2{
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 3px;
+}
+
+form p{
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 3px;
+}
+
+#start {
+    margin-bottom: 5px;
+}
+
+/* Bottom of the page */
+footer {
+    font-size: 1.5rem;
+    /* border: 1px solid black; */
+    text-align: center;
+}
+
+footer a{
+    text-decoration: none;
+    color: black;
+    padding: 3px;
+}
+
+
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 440px) {
+    .cellStats{
+        font-size: 0.8rem;  
+    }
+    .btcChart {
+        box-sizing: border-box;
+        width: 300px;
+        height: 300px;
+       }
+    }
