@@ -28,7 +28,7 @@ app = Flask(__name__, template_folder="templates")
 def homepage():
 
     #for timezone differences, it looks to two days ago to ensure uptime.
-    end = date.today()- timedelta(days = 2)
+    end = date.today()- timedelta(days = 1)
     end =  end.strftime("%Y-%m-%d")
     
 
